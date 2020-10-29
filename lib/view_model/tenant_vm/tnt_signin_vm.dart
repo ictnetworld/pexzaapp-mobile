@@ -29,7 +29,7 @@ class TenantSigninViewModel extends BaseModel {
     await prefs.setTenantToken(jsonDecode(res.body)["access_token"]);
 
     var paid = await prefs.gethasPaid();
-
+    print(paid);
     if (res.statusCode == 200) {
       if (paid == true) {
         nav.navigateTo(TenantLandingView);

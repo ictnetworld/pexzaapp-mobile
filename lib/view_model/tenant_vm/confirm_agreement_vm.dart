@@ -106,13 +106,17 @@ class ConfirmAgreementViewModel extends BaseModel {
     var pack = await conf.packOut(token: token, apartmentId: id);
     setBusy(false);
     if (pack.statusCode == 200) {
-      dialognav.showDialog(
-        title: "Success",
-        description: "You have successfully packed out",
-        buttonTitle: "Okay",
+      dialognav.showConfirmationDialog(
+        title: "Prompt!",
+        description: "Are you sure you want to pack out",
+        cancelTitle: "Cancel",
+        confirmationTitle: "Yes",
+        onCancelled: () => nav.pop(),
+        onOkayClicked: () async{
+          await prefs.sethasPaid(false);
+          nav.navigateTo(ChooseView);
+        } 
       );
-      nav.navigateTo(ChooseView);
-      await prefs.sethasPaid(false);
       setBusy(false);
     }
     if (pack.statusCode == 500) {

@@ -38,7 +38,7 @@ class DialogService {
       String confirmationTitle = 'Ok',
       String cancelTitle = 'Cancel',
       Function onCancelled,
-      Function onOkayCancelled}) {
+      Function onOkayClicked}) {
     _dialogCompleter = Completer<DialogResponse>();
     _showDialogListener(
       DialogRequest(
@@ -47,7 +47,7 @@ class DialogService {
           buttonTitle: confirmationTitle,
           cancelTitle: cancelTitle,
           onCancelled: onCancelled,
-          onOkayClicked: onOkayCancelled),
+          onOkayClicked: onOkayClicked),
     );
     return _dialogCompleter.future;
   }
